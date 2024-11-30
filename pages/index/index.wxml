@@ -1,0 +1,32 @@
+<view class="container">
+    <!-- 渐变背景 -->
+    <view class="bg-gradient"></view>
+    
+    <!-- 半透明遮罩 -->
+    <view class="mask"></view>
+    
+    <!-- 内容区域 -->
+    <view class="content">
+        <view class="header">
+            <image class="logo" src="/images/home.png"></image>
+            <text class="title">趣味古诗学习</text>
+        </view>
+        
+        <view class="menu-list">
+            <view class="menu-item" bindtap="navigateTo" data-page="poetry">
+                <image src="/images/poetry.png"></image>
+                <text>古诗欣赏</text>
+            </view>
+            
+            <view class="menu-item" bindtap="navigateTo" data-page="game">
+                <image src="/images/game.png"></image>
+                <text>诗词闯关</text>
+            </view>
+            
+            <view class="menu-item" bindtap="navigateTo" data-page="wordGame">
+                <image src="/images/word.png"></image>
+                <text>趣味识字</text>
+            </view>
+        </view>
+    </view>
+</view> 

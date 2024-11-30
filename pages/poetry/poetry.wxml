@@ -1,0 +1,76 @@
+<view class="container">
+    <view class="search-section">
+        <view class="search-box">
+            <icon type="search" size="16" color="#999"/>
+            <input 
+                class="search-input" 
+                placeholder="搜索古诗题目或作者" 
+                bindinput="onSearchInput"
+                value="{{searchKey}}"
+            />
+        </view>
+    </view>
+
+    <view class="poetry-section">
+        <!-- 搜索结果提示 -->
+        <view class="search-result-tip" wx:if="{{searchKey}}">
+            找到 {{filteredPoetryList.length}} 首相关古诗
+        </view>
+
+        <!-- 古诗卡片 -->
+        <view class="poetry-card" wx:if="{{currentPoetry}}">
+            <!-- 诗词标题区 -->
+            <view class="poetry-header">
+                <text class="poetry-title">{{currentPoetry.title}}</text>
+                <text class="poetry-author">[{{currentPoetry.dynasty}}] {{currentPoetry.author}}</text>
+            </view>
+
+            <!-- 诗词内容区 -->
+            <view class="poetry-content">
+                <text class="content-text">{{currentPoetry.content}}</text>
+            </view>
+
+            <!-- 注释和赏析区 -->
+            <view class="poetry-notes">
+                <view class="notes-section">
+                    <text class="section-title">注释</text>
+                    <view class="notes-content">
+                        <block wx:for="{{currentPoetry.notes}}" wx:key="index">
+                            <view class="note-item">
+                                <text class="note-word">{{item.word}}：</text>
+                                <text class="note-explanation">{{item.explanation}}</text>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+
+                <view class="appreciation-section">
+                    <text class="section-title">赏析</text>
+                    <text class="appreciation-content">{{currentPoetry.explanation}}</text>
+                </view>
+            </view>
+
+            <!-- 朗读和收藏按钮 -->
+            <view class="action-buttons">
+                <button class="action-btn" bindtap="toggleFavorite">
+                    <image src="{{isFavorite ? '/images/star-filled.png' : '/images/star.png'}}" class="btn-icon"></image>
+                    {{isFavorite ? '已收藏' : '收藏'}}
+                </button>
+            </view>
+        </view>
+
+        <!-- 翻页按钮 -->
+        <view class="control-buttons">
+            <button 
+                class="btn prev" 
+                bindtap="prevPoetry" 
+                disabled="{{currentIndex <= 0}}"
+            >上一首</button>
+            <button 
+                class="btn next" 
+                bindtap="nextPoetry" 
+                disabled="{{currentIndex >= filteredPoetryList.length - 1}}"
+            >下一首</button>
+        </view>
+    </view>
+</view> 
